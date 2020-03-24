@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>
+      #userid {
+        color: red;
+      }
+    </style>
     <script>
       !(function(t, e, n, s, a, c, i, o, p) {
         (t.AppsFlyerSdkObject = a),
@@ -31,20 +36,33 @@
       })(window, document, "script", 0, "AF", "pba", {
         pba: { webAppId: "7c8711e2-ba99-4a80-bc8a-813eb5e2df49" }
       });
-      window.onload = function() {
-        AF("pba", "event", {
-          eventType: "EVENT",
-          eventCategory: "conversion",
-          eventName: "subscription",
-          eventLabel: "mysite"
-        });
-      };
+    </script>
+    <script>
+      function displayUserName() {
+        let userId = localStorage.getItem("userid");
+        if (userId) {
+          document.getElementById("userid").innerText = userId;
+          AF("pba", "event", { eventType: "IDENTIFY", customUserId: userId });
+          AF("pba", "event", {
+            eventType: "EVENT",
+            eventCategory: "auth",
+            eventName: "login",
+            eventLabel: "mysite"
+          });
+        } else {
+          console.log("Not Logged In");
+        }
+      }
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Login Complete</title>
   </head>
-  <body>
-    Thank you for subscribing
+  <body onload="displayUserName()">
+    <div>
+      <p>Thank you for logging in.</p>
+      <p>Your user ID is <span id="userid"></span></p>
+      <p><a href="index.html">Back to Top</a></p>
+    </div>
   </body>
 </html>

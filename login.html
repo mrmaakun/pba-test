@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      function login() {
+        let userId = document.getElementById("userid").value;
+        localStorage.setItem("userid", userId);
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <form onsubmit="login()" action="logincomplete.html">
+      <div>
+        <label>User ID</label> <input type="text" name="userid" id="userid" />
+      </div>
+
+      <br />
+      <input type="submit" id="submit" />
+    </form>
+  </body>
+</html>

@@ -31,9 +31,23 @@
       })(window, document, "script", 0, "AF", "pba", {
         pba: { webAppId: "7c8711e2-ba99-4a80-bc8a-813eb5e2df49" }
       });
+    </script>
+    <script>
+      function loginCheck() {
+        let userId = localStorage.getItem("userid");
+        if (userId) {
+          document.getElementById("loggedin").style.display = "block";
+          document.getElementById("userid").innerText = userId;
+        }
+      }
 
-      function buttonPress(){
-        console.log("pressed")
+      function logout() {
+        localStorage.clear();
+        location.reload();
+      }
+
+      function buttonPress() {
+        console.log("pressed");
         AF("pba", "event", {
           eventType: "EVENT",
           eventCategory: "button",
@@ -41,18 +55,28 @@
           eventLabel: "mysite"
         });
       }
-
     </script>
+    <style>
+      #loggedin {
+        display: none;
+      }
+      #userid {
+        color: red;
+      }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PBA Test</title>
   </head>
-  <body>
-    This is my PBA Test
-    <br><br><br><br>
-    <a href="subscribed.html">Subscribe Now!</a>
-    <br><br>
-    <button onClick="buttonPress();">Awesome Button</button>
-
+  <body onload="loginCheck()">
+    <div>
+      <p>This is my PBA Test</p>
+      <span id="loggedin"
+        ><p>You are logged in as <span id="userid"></span></p
+      ></span>
+      <p><a href="login.html">Login</a></p>
+      <p><a onclick="logout()" href="#">Logout</a></p>
+      <p><button onClick="buttonPress();">Awesome Button</button></p>
+    </div>
   </body>
 </html>
