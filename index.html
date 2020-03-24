@@ -31,6 +31,17 @@
       })(window, document, "script", 0, "AF", "pba", {
         pba: { webAppId: "7c8711e2-ba99-4a80-bc8a-813eb5e2df49" }
       });
+
+      function buttonPress(){
+        console.log("pressed")
+        AF("pba", "event", {
+          eventType: "EVENT",
+          eventCategory: "button",
+          eventName: "buttonPress",
+          eventLabel: "mysite"
+        });
+      }
+
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,5 +49,10 @@
   </head>
   <body>
     This is my PBA Test
+    <br><br><br><br>
+    <a href="subscribed.html">Subscribe Now!</a>
+    <br><br>
+    <button onClick="buttonPress();">Awesome Button</button>
+
   </body>
 </html>
